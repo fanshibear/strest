@@ -248,7 +248,7 @@ export const performTests = async (testObjects: object[], cmd: any) => {
     }
     let definedVariablesMap = new Map(Object.entries(definedVariables))
     definedVariablesMap.forEach(function(value, key){
-      fileMap.set(key, value)
+      fileMap.set(key, value as object)
     })
     requestReponses.forEach(function(value, key){
       fileMap.set(key, value)
@@ -432,7 +432,7 @@ const performRequest = async (requestObject: requestsObjectSchema, requestName: 
             form.append(item.name, item.value);
           }
         });   
-        axiosObject.data  = form.getBuffer();
+        axiosObject.data  = form;
         axiosObject.headers = {...axiosObject.headers,...form.getHeaders()};
       }
     }
